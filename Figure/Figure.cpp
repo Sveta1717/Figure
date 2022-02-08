@@ -19,10 +19,10 @@ protected:
 	int x;
 	int y;
 
-public:	
+public:
 	Figure(int x = 0, int y = 0)
 	{
-		this->x = x;	
+		this->x = x;
 		this->y = y;
 	}
 
@@ -35,21 +35,21 @@ public:
 	{
 		return 0;
 	}
-	
+
 	virtual void Draw() // = 0;		
 	{
-		
+
 	}
 };
 
 class Point : public Figure
-{	
+{
 public:
 	Point()
 	{
 		x = y = 0;
 	}
-	
+
 	void Draw() //const
 	{
 		COORD position;
@@ -59,8 +59,8 @@ public:
 		int i;
 		int j;
 		for (i = 0, j = 0; i < y, j < x; i++, j++)
-		{			
-				cout << " ";			
+		{
+			cout << " ";
 		}
 		cout << "Point : " << char(46) << "\n\n";
 	}
@@ -72,19 +72,19 @@ public:
 };
 
 class Line : public Figure
-{	
+{
 public:
 	Line()
 	{
 		x = y = 0;
 	}
-		
+
 	virtual void Draw() //const
 	{
 		COORD position;
 		position.X = x;
 		position.Y = y;
-		
+
 		int i;
 		int j;
 		cout << "Line : ";
@@ -104,25 +104,24 @@ class Ellipse1 : public Figure
 {
 protected:
 
-	double radius1;	
+	double radius1;
 	double radius2;
-	
+
 public:
 	Ellipse1()
-	{		
+	{
 		radius1 = 5;
 		radius2 = 9;
 	}
 
 	Ellipse1(double radius1_, double radius2_)
-	{
-		//cout << "Ellipse param c-tor!\n";
-		radius1_ = radius1;		
+	{		
+		radius1_ = radius1;
 		radius2_ = radius2;
 	}
 
 	double Area()
-	{		
+	{
 		return radius1 * radius2 / 2 * PI;
 	}
 
@@ -132,7 +131,7 @@ public:
 	}
 
 	virtual void Draw() //const
-	{		
+	{
 
 		cout << "Ellips, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
@@ -150,15 +149,18 @@ protected:
 	int* x;
 	int* y;
 
-public:	
+public:
 	Poligon1()
 	{
-		
+		int* x1 = nullptr;
+		int* y1 = nullptr;
+		int* x = nullptr;
+		int* y = nullptr;		
 	}
 
 	Poligon1(int side, int* x_, int* x1_, int* y_, int* y1_)
 	{
-		this->side = side;	
+		this->side = side;
 		this->x = x_;
 		this->x1 = x1_;
 		this->y = y_;
@@ -166,13 +168,13 @@ public:
 	}
 
 	double Area()
-	{		
+	{
 		double area = 0;
 		for (int i = 0; i < side - 1; i++)
 		{
-			area += (x[i] + x1[i]) * (y1[i] - y[i]);			
-		}		
-		return abs(area) / 2; 
+			area += (x[i] + x1[i]) * (y1[i] - y[i]);
+		}
+		return abs(area) / 2;
 	}
 
 	double PerimeterPoligon1()
@@ -181,8 +183,8 @@ public:
 		for (int i = 0; i < side; i++)
 		{
 			int j = (i + 1) % side;
-			per += sqrt((x[i] - x1[j]) * (x[i] - x1[j]) + (y1[i] - y[j]) * (y[i] - y1[j]));			
-		}		
+			per += sqrt((x[i] - x1[j]) * (x[i] - x1[j]) + (y1[i] - y[j]) * (y[i] - y1[j]));
+		}
 		return per;
 	}
 
@@ -197,12 +199,11 @@ public:
 };
 
 class Circle : public Ellipse1
-{	
+{
 
 public:
-	Circle()
-	{	
-
+	Circle(): Circle(5, 3, 7)
+	{
 	}
 
 	Circle(int center_x, int center_y, int radius_)//:  Ellipse(center_x, center_y, radius)
@@ -243,20 +244,20 @@ public:
 
 	Triangle()
 	{
-		side1 = 7.0;
-		side2 = 6.0;
-		side3 = 5.0;
+		side1 = 2.5;
+		side2 = 2.7;
+		side3 = 4.5;
 	}
 	Triangle(double a, double b, double c)
 	{
 		this->side1 = a;
 		this->side2 = b;
 		this->side3 = c;
-	}	
+	}
 
 	double AreaTriangle() const
 	{
-		double P = Perimeter();
+		double P = PerimeterTriangle();
 		double p = P / 2;
 		double  S = p * (p - side1) * (p - side2) * (p - side3);
 		return sqrt(S);
@@ -270,14 +271,12 @@ public:
 	void Draw() const
 	{
 		cout << "Triangle, area = " << AreaTriangle() << ", perimeter = " << PerimeterTriangle() << "\n";
-		int line;      
-		int i;        
 		
-		for (line = 1; line <= 5; line++) 
-		{			
-			for (i = 0; i < line; i++)
-				cout << char(46);
-			cout << char('\n');
+		for (int line = 1; line <= 3; line++)
+		{
+			for (int i = 0; i < line; i++)
+				cout << '*';
+			cout << '\n';
 		}
 	}
 	~Triangle()
@@ -288,20 +287,19 @@ public:
 
 class Quadrilateral : public Poligon1 // четырехугольник
 {
-protected:
-	
-	/*int y1;
-	int x1;*/
+protected:	
 	int* x2;
 	int* y2;
 	int* y3;
 	int* x3;
-	
+
 public:
-
-	Quadrilateral()
+	Quadrilateral() 
 	{
-
+		int* x2 = nullptr;
+		int* y2 = nullptr;
+		int* y3 = nullptr;
+		int* x3 = nullptr;
 	}
 	Quadrilateral(int* x, int* y, int* y1, int* x1, int* x2, int* y2, int* y3, int* x3)
 	{
@@ -313,7 +311,7 @@ public:
 		this->x3 = x3;
 		this->y2 = y2;
 		this->y3 = y3;
-	}	
+	}
 
 	double AreaQuadrilateral() const
 	{
@@ -321,12 +319,12 @@ public:
 		return S;
 	}
 
-	double PerimeterQuadrilateral() const
-	{		
+	double PerimeterQuadrilateral()
+	{
 		return PerimeterPoligon1();
 	}
 
-	void Draw() const
+	void Draw() 
 	{
 		cout << "Quadrilateral, area = " << AreaQuadrilateral() << ", perimeter = " << PerimeterQuadrilateral() << "\n";
 	}
@@ -342,12 +340,14 @@ public:
 
 	AcuteTriangle()
 	{
-
+		side1 = 4.0;
+		side2 = 3.7;
+		side3 = 4.2;
 	}
-	
+
 	double Area() const
-	{		
-		return  AreaTriangle() ;
+	{
+		return  AreaTriangle();
 	}
 
 	double Perimeter() const
@@ -357,7 +357,8 @@ public:
 
 	void Draw() const
 	{
-		cout << " Acute triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+		cout << "Acute triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+		
 	}
 	~AcuteTriangle()
 	{
@@ -372,12 +373,14 @@ public:
 
 	IsoscelesAcuteTriangle()
 	{
-
+		side1 = 4.5;
+		side2 = 5.0;
+		side3 = 5.0;
 	}
-	
+
 	double Area() const
-	{		
-		return  AreaTriangle() ;
+	{
+		return  AreaTriangle();
 	}
 
 	double Perimeter() const
@@ -387,9 +390,9 @@ public:
 
 	void Draw() const
 	{
-		cout << " Isosceles triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+		cout << "Isosceles triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
-	
+
 	~IsoscelesAcuteTriangle()
 	{
 
@@ -402,12 +405,14 @@ public:
 
 	EquilateralAcuteTriangle()
 	{
-
+		side1 = 4.0;
+		side2 = 4.0;
+		side3 = 4.0;
 	}
-	
+
 	double Area() const
-	{		
-		return  AreaTriangle() ;
+	{
+		return  AreaTriangle();
 	}
 
 	double Perimeter() const
@@ -419,7 +424,7 @@ public:
 	{
 		cout << "Equilateral acute triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
-	
+
 	~EquilateralAcuteTriangle()
 	{
 
@@ -432,12 +437,14 @@ public:
 
 	IsoscelesObtuseTriangle()
 	{
-
+		side1 = 4.5;
+		side2 = 4.5;
+		side3 = 7.5;
 	}
-	
+
 	double Area() const
-	{		
-		return  AreaTriangle() ;
+	{
+		return  AreaTriangle();
 	}
 
 	double Perimeter() const
@@ -447,9 +454,9 @@ public:
 
 	void Draw() const
 	{
-	     cout << "Isosceles obtuse triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+		cout << "Isosceles obtuse triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
-	
+
 	~IsoscelesObtuseTriangle()
 	{
 
@@ -462,11 +469,13 @@ public:
 
 	ObtuseTriangle()
 	{
-
+		side1 = 4.5;
+		side2 = 5.0;
+		side3 = 9.2;
 	}
 	double Area() const
-	{		
-		return  AreaTriangle() ;
+	{
+		return  AreaTriangle();
 	}
 
 	double Perimeter() const
@@ -477,8 +486,28 @@ public:
 	void Draw() const
 	{
 		cout << "Obtuse triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+
+		int n = 5;
+		int h;
+		for (int i = 1; i < n; i++) {
+
+			if (i <= n / 2)
+			{
+				h = i;
+			}
+			else if (i > n / 2)
+			{
+				h = n - i;
+			}
+
+			for (int j = 0; j < h; j++)
+			{
+				cout << "*";
+			}
+			cout << "\n";
+		}
 	}
-	
+
 	~ObtuseTriangle()
 	{
 
@@ -491,12 +520,14 @@ public:
 
 	RightTriangle()
 	{
-
+		side1 = 4.0;
+		side2 = 3.0;
+		side3 = 5.0;
 	}
-	
+
 	double Area() const
-	{		
-		return  AreaTriangle() ;
+	{
+		return  AreaTriangle();
 	}
 
 	double Perimeter() const
@@ -508,7 +539,7 @@ public:
 	{
 		cout << "Right triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
-	
+
 	~RightTriangle()
 	{
 
@@ -521,12 +552,14 @@ public:
 
 	IsoscelesRightTriangle()
 	{
-
+		side1 = 4.0;
+		side2 = 4.0;
+		side3 = 5.5;
 	}
-	
+
 	double Area() const
-	{		
-		return  AreaTriangle() ;
+	{
+		return  AreaTriangle();
 	}
 
 	double Perimeter() const
@@ -538,102 +571,113 @@ public:
 	{
 		cout << "Isosceles right triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
-	
+
 	~IsoscelesRightTriangle()
 	{
 
 	}
 };
 
-class Parallelogram : public Quadrilateral 
+class Parallelogram : public Quadrilateral
+{
 public:
 
 	Parallelogram()
 	{
-
+		int* x2 = nullptr;
+		int* y2 = nullptr;
+		int* y3 = nullptr;
+		int* x3 = nullptr;
 	}
-	
+
 	double Area() const
-	{		
-		return QuadrilateralArea();
+	{
+		return AreaQuadrilateral();
 	}
 
-	double Perimeter() const
-	{		
+	double Perimeter() 
+	{
 		return PerimeterQuadrilateral();
 	}
 
-	void Draw() const
+	void Draw() 
 	{
-		out << "Parallelogram, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+		cout << "Parallelogram, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
-		
+
 	~Parallelogram()
 	{
 
-	}	
-		
+	}
 };
 
-class Trapezoid : public Quadrilateral 
+class Trapezoid : public Quadrilateral
+{
 public:
 
-	Trapezoid ()
+	Trapezoid()
 	{
-
+		int* x2 = nullptr;
+		int* y2 = nullptr;
+		int* y3 = nullptr;
+		int* x3 = nullptr;
 	}
-	
+
 	double Area() const
-	{		
-		return QuadrilateralArea();
+	{
+		return AreaQuadrilateral();
 	}
 
-	double Perimeter() const
-	{		
+	double Perimeter() 
+	{
 		return PerimeterQuadrilateral();
 	}
 
-	void Draw() const
+	void Draw() 
 	{
 		cout << "Trapezoid , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
 
-        ~Trapezoid()
+	~Trapezoid()
 	{
 
 	}
 };
 
-class Deltoid : public Quadrilateral 
+class Deltoid : public Quadrilateral
+{
 public:
 
-	Deltoid ()
+	Deltoid()
 	{
-
+		int* x2 = nullptr;
+		int* y2 = nullptr;
+		int* y3 = nullptr;
+		int* x3 = nullptr;
 	}
-	
+
 	double Area() const
-	{		
-		return QuadrilateralArea();
+	{
+		return AreaQuadrilateral();
 	}
 
-	double Perimeter() const
-	{		
+	double Perimeter() 
+	{
 		return PerimeterQuadrilateral();
 	}
 
-	void Draw() const
+	void Draw() 
 	{
 		cout << "Deltoid , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
 
-        ~Deltoid()
+	~Deltoid()
 	{
 
 	}
 };
 
-class Rectangle1: public Parallelogram
+class Rectangle1 : public Parallelogram
 {
 protected:
 	unsigned short width;
@@ -642,13 +686,13 @@ protected:
 public:
 
 
-	Rectangle1()
-	{
-
+	Rectangle1(): Rectangle1(7, 3)
+	{		
 	}
 	Rectangle1(unsigned short width, unsigned short height)
 	{
-
+		this->width = width;
+		this->height = height;
 	}
 
 	unsigned short GetWidth() const
@@ -668,14 +712,14 @@ public:
 	{
 		height_ = height;
 	}
-	
+
 	double Area() const
-	{		
+	{
 		return width * height;
 	}
 
 	double Perimeter() const
-	{		
+	{
 		return 2 * (width + height);
 	}
 
@@ -683,93 +727,133 @@ public:
 	{
 		cout << "Rectangle , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
-	
-	 ~Rectangle1()
+
+	~Rectangle1()
 	{
 
 	}
 };
 
-class Rhombus: public Parallelogram
+class Rhombus : public Parallelogram
 {
 protected:
-	unsigned short width;
-	unsigned short height;
+	double diagonal1;
+	double diagonal2;	
 
 public:
-
-
-	Rhombus()
+	Rhombus(): Rhombus(3.0, 3.0, 5.0)
 	{
-
 	}
-	Rhombus(unsigned short width, unsigned short height)
+	Rhombus(double side, double diagonal1, double diagonal2)
 	{
-
-	}
-
-	unsigned short GetWidth() const
-	{
-		return width;
-	}
-	unsigned short GetHeight() const
-	{
-		return height;
+		this->side = side;
+		this->diagonal1 = diagonal1;
+		this->diagonal2 = diagonal2;
 	}
 
-	void SetWidth(unsigned short width_)
+	unsigned short GetSide() const
 	{
-		width_ = width;
-	}
-	void SetHeight(unsigned short height_)
-	{
-		height_ = height;
+		return side;
 	}
 	
+	void SetSide(double side_)
+	{
+		side_ = side;
+	}
+
 	double Area() const
-	{		
-		return width * height;
+	{
+		return (diagonal1 * diagonal2) / 2;
 	}
 
 	double Perimeter() const
-	{		
-		return 2 * (width + height);
+	{
+		return 4 * side;
 	}
 
 	void Draw() const
 	{
 		cout << "Rhombus , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+		
+		for (int i = 1; i <= (diagonal1 * 2) + 1; i++)
+		{
+			for (int j = 1; j <= (diagonal1 * 2) + 1; j++)
+			{
+				if (i == 1 && j == diagonal1 + 1)
+				{
+					cout << "*";
+				}
+				else if (i >= 2 && i <= diagonal1 && j == (diagonal1 + 1) - (i - 1))
+				{
+					cout << "*";
+				}
+				else if (i >= 2 && i <= diagonal1 && j == (diagonal1 + 1) + (i - 1))
+				{
+					cout << "*";
+				}
+				else if (i >= diagonal1 && j == (i - diagonal1))
+				{
+					cout << "*";
+				}
+				else if (i >= diagonal1 && j == (diagonal1 * 2) + 2 - (i - diagonal1))
+				{
+					cout << "*";
+				}
+				else
+				{
+					cout << " ";
+				}
+			}
+			cout << "\n";
+		}
 	}
-	
+
 	~Rhombus()
 	{
 
 	}
 };
 
-class Square: public Rectangle1
+class Square : public Rectangle1
 {
 public:
 	Square()
 	{
-                side = 7;
-	}	
-	
+		side = 5;
+	}
+
 	double Area() const
-	{		
+	{
 		return abs(side) * abs(side);
 	}
 
 	double Perimeter() const
-	{		
+	{
 		return 4 * side;
 	}
 
 	void Draw() const
 	{
 		cout << "Square , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+
+		for (int i = 1; i <= side; i++) 
+		{
+			for (int j = 1; j <= side; j++) 
+			{
+				if (i == 1 || i == side) 
+					cout << '*';
+				else 
+				{
+					if (j == 1 || j == side) 
+						cout << '*';
+					else
+						cout << ' ';
+				}
+			}   
+			cout << "\n"; 
+		}   
 	}
-	
+
 	~Square()
 	{
 
@@ -793,10 +877,7 @@ int main()
 	l.Draw();
 
 	Ellipse1 e;
-	e.Draw();
-
-	/*Poligon1 pl(5, &x, &x1, &y, &y1);
-	pl.Draw();*/
+	e.Draw();	
 
 	Circle c;
 	c.Draw();
@@ -807,7 +888,30 @@ int main()
 	Quadrilateral q(&x, &x1, &y, &y1, &x2, &x3, &y2, &y3);
 	q.Draw();
 
-	Rectangle1 r;
-	r.Draw();	
-}
+	AcuteTriangle a;
+	a.Draw();
 
+	IsoscelesAcuteTriangle i;
+	i.Draw();
+
+	ObtuseTriangle o;
+	o.Draw();
+
+	Parallelogram pl;
+	pl.Draw();
+
+	Trapezoid tr;
+	tr.Draw();
+
+	Deltoid d;
+	d.Draw();
+
+	Rectangle1 r;
+	r.Draw();
+
+	Rhombus rb;
+	rb.Draw();
+
+	Square s;
+	s.Draw();
+}
