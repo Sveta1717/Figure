@@ -280,6 +280,10 @@ public:
 			cout << char('\n');
 		}
 	}
+	~Triangle()
+	{
+
+	}
 };
 
 class Quadrilateral : public Poligon1 // четырехугольник
@@ -326,6 +330,10 @@ public:
 	{
 		cout << "Quadrilateral, area = " << AreaQuadrilateral() << ", perimeter = " << PerimeterQuadrilateral() << "\n";
 	}
+	~Quadrilateral()
+	{
+
+	}
 };
 
 class AcuteTriangle : public Triangle // остроугольный треугольник
@@ -350,6 +358,10 @@ public:
 	void Draw() const
 	{
 		cout << " Acute triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	}
+	~AcuteTriangle()
+	{
+
 	}
 };
 
@@ -377,6 +389,11 @@ public:
 	{
 		cout << " Isosceles triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
+	
+	~IsoscelesAcuteTriangle()
+	{
+
+	}
 };
 
 class EquilateralAcuteTriangle : public Triangle // равносторонний  остроугольный треугольник
@@ -402,13 +419,18 @@ public:
 	{
 		cout << "Equilateral acute triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
+	
+	~EquilateralAcuteTriangle()
+	{
+
+	}
 };
 
-class  EquilateralObtuseTriangle : public Triangle // равностроронний тупоугольный треугольник
+class  IsoscelesObtuseTriangle : public Triangle // равнобедренный тупоугольный треугольник
 {
 public:
 
-	EquilateralObtuseTriangle()
+	IsoscelesObtuseTriangle()
 	{
 
 	}
@@ -425,7 +447,12 @@ public:
 
 	void Draw() const
 	{
-		cout << "Equilateral obtuse triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	     cout << "Isosceles obtuse triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	}
+	
+	~IsoscelesObtuseTriangle()
+	{
+
 	}
 };
 
@@ -450,6 +477,11 @@ public:
 	void Draw() const
 	{
 		cout << "Obtuse triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	}
+	
+	~ObtuseTriangle()
+	{
+
 	}
 };
 
@@ -476,6 +508,11 @@ public:
 	{
 		cout << "Right triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
+	
+	~RightTriangle()
+	{
+
+	}
 };
 
 class IsoscelesRightTriangle : public Triangle //  равнобедренный прямоугольный треугольник
@@ -501,6 +538,11 @@ public:
 	{
 		cout << "Isosceles right triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
+	
+	~IsoscelesRightTriangle()
+	{
+
+	}
 };
 
 class Parallelogram : public Quadrilateral 
@@ -523,8 +565,14 @@ public:
 
 	void Draw() const
 	{
-		cout << "Parallelogram, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+		out << "Parallelogram, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
+		
+	~Parallelogram()
+	{
+
+	}	
+		
 };
 
 class Trapezoid : public Quadrilateral 
@@ -549,6 +597,11 @@ public:
 	{
 		cout << "Trapezoid , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
+
+        ~Trapezoid()
+	{
+
+	}
 };
 
 class Deltoid : public Quadrilateral 
@@ -572,6 +625,11 @@ public:
 	void Draw() const
 	{
 		cout << "Deltoid , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	}
+
+        ~Deltoid()
+	{
+
 	}
 };
 
@@ -625,6 +683,11 @@ public:
 	{
 		cout << "Rectangle , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
+	
+	 ~Rectangle1()
+	{
+
+	}
 };
 
 class Rhombus: public Parallelogram
@@ -677,6 +740,11 @@ public:
 	{
 		cout << "Rhombus , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
+	
+	~Rhombus()
+	{
+
+	}
 };
 
 class Square: public Rectangle1
@@ -700,6 +768,11 @@ public:
 	void Draw() const
 	{
 		cout << "Square , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	}
+	
+	~Square()
+	{
+
 	}
 };
 
