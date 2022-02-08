@@ -681,48 +681,20 @@ public:
 
 class Square: public Rectangle1
 {
-protected:
-	unsigned short width;
-	unsigned short height;
-
 public:
-
-
 	Square()
 	{
-
-	}
-	Square(unsigned short width, unsigned short height)
-	{
-
-	}
-
-	unsigned short GetWidth() const
-	{
-		return width;
-	}
-	unsigned short GetHeight() const
-	{
-		return height;
-	}
-
-	void SetWidth(unsigned short width_)
-	{
-		width_ = width;
-	}
-	void SetHeight(unsigned short height_)
-	{
-		height_ = height;
-	}
+                side = 7;
+	}	
 	
 	double Area() const
 	{		
-		return width * height;
+		return abs(side) * abs(side);
 	}
 
 	double Perimeter() const
 	{		
-		return 2 * (width + height);
+		return 4 * side;
 	}
 
 	void Draw() const
