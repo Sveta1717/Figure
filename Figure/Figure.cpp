@@ -175,20 +175,20 @@ public:
 		return abs(area) / 2; 
 	}
 
-	double Perimeter()
+	double PerimeterPoligon1()
 	{
 		double per = 0;
-		for (int i = 0; i < side - 1; i++)
+		for (int i = 0; i < side; i++)
 		{
 			int j = (i + 1) % side;
-			per += sqrt((x[i] - x1[i]) * (x[i] - x1[i]) + (y1[i] - y[i]) * (y[i] - y1[i]));			
-		}
+			per += sqrt((x[i] - x1[j]) * (x[i] - x1[j]) + (y1[i] - y[j]) * (y[i] - y1[j]));			
+		}		
 		return per;
 	}
 
 	virtual void Draw() //const
 	{
-		cout << "Poligon, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+		cout << "Poligon, area = " << Area() << ", perimeter = " << PerimeterPoligon1() << "\n";
 	}
 	~Poligon1()
 	{
@@ -254,7 +254,7 @@ public:
 		this->side3 = c;
 	}	
 
-	double Area() const
+	double AreaTriangle() const
 	{
 		double P = Perimeter();
 		double p = P / 2;
@@ -262,14 +262,14 @@ public:
 		return sqrt(S);
 	}
 
-	double Perimeter() const
+	double PerimeterTriangle() const
 	{
 		return side1 + side2 + side3;
 	}
 
 	void Draw() const
 	{
-		cout << "Triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+		cout << "Triangle, area = " << AreaTriangle() << ", perimeter = " << PerimeterTriangle() << "\n";
 		int line;      
 		int i;        
 		
@@ -318,8 +318,8 @@ public:
 	}
 
 	double Perimeter() const
-	{
-		return 0;
+	{		
+		return PerimeterPoligon1();
 	}
 
 	void Draw() const
@@ -336,14 +336,20 @@ public:
 	{
 
 	}
-	AcuteTriangle(unsigned short width, unsigned short height)
-	{
+	
+	double Area() const
+	{		
+		return  AreaTriangle() ;
+	}
 
-	}	
+	double Perimeter() const
+	{
+		return PerimeterTriangle();
+	}
 
 	void Draw() const
 	{
-		cout << "Acute triangle!\n";
+		cout << " Acute triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
 };
 
@@ -356,14 +362,20 @@ public:
 	{
 
 	}
-	IsoscelesAcuteTriangle(unsigned short width, unsigned short height)
-	{
+	
+	double Area() const
+	{		
+		return  AreaTriangle() ;
+	}
 
-	}	
+	double Perimeter() const
+	{
+		return PerimeterTriangle();
+	}
 
 	void Draw() const
 	{
-		cout << "Isosceles acute triangle!\n";
+		cout << " Isosceles triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
 };
 
@@ -375,16 +387,20 @@ public:
 	{
 
 	}
-	EquilateralAcuteTriangle(unsigned short width, unsigned short height)
-	{
-
+	
+	double Area() const
+	{		
+		return  AreaTriangle() ;
 	}
 
-	
+	double Perimeter() const
+	{
+		return PerimeterTriangle();
+	}
 
 	void Draw() const
 	{
-		cout << "Equilateral triangle!\n";
+		cout << "Equilateral acute triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
 };
 
@@ -396,14 +412,20 @@ public:
 	{
 
 	}
-	EquilateralObtuseTriangle(unsigned short width, unsigned short height)
-	{
+	
+	double Area() const
+	{		
+		return  AreaTriangle() ;
+	}
 
-	}	
+	double Perimeter() const
+	{
+		return PerimeterTriangle();
+	}
 
 	void Draw() const
 	{
-		cout << "  Equilateral obtuse triangle!\n";
+		cout << "Equilateral obtuse triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
 };
 
@@ -415,14 +437,19 @@ public:
 	{
 
 	}
-	ObtuseTriangle(unsigned short width, unsigned short height)
-	{
+	double Area() const
+	{		
+		return  AreaTriangle() ;
+	}
 
-	}	
+	double Perimeter() const
+	{
+		return PerimeterTriangle();
+	}
 
 	void Draw() const
 	{
-		cout << " Obtuse triangle!\n";
+		cout << "Obtuse triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
 };
 
@@ -434,14 +461,20 @@ public:
 	{
 
 	}
-	RightTriangle(unsigned short width, unsigned short height)
-	{
+	
+	double Area() const
+	{		
+		return  AreaTriangle() ;
+	}
 
-	}	
+	double Perimeter() const
+	{
+		return PerimeterTriangle();
+	}
 
 	void Draw() const
 	{
-		cout << "Right triangle!\n";
+		cout << "Right triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
 };
 
@@ -453,16 +486,20 @@ public:
 	{
 
 	}
-	IsoscelesRightTriangle(unsigned short width, unsigned short height)
-	{
-
+	
+	double Area() const
+	{		
+		return  AreaTriangle() ;
 	}
 
-	
+	double Perimeter() const
+	{
+		return PerimeterTriangle();
+	}
 
 	void Draw() const
 	{
-		cout << " Isosceles right triangle!\n";
+		cout << "Isosceles right triangle, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
 };
 
