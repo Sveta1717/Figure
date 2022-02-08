@@ -679,6 +679,58 @@ public:
 	}
 };
 
+class Square: public Rectangle1
+{
+protected:
+	unsigned short width;
+	unsigned short height;
+
+public:
+
+
+	Square()
+	{
+
+	}
+	Square(unsigned short width, unsigned short height)
+	{
+
+	}
+
+	unsigned short GetWidth() const
+	{
+		return width;
+	}
+	unsigned short GetHeight() const
+	{
+		return height;
+	}
+
+	void SetWidth(unsigned short width_)
+	{
+		width_ = width;
+	}
+	void SetHeight(unsigned short height_)
+	{
+		height_ = height;
+	}
+	
+	double Area() const
+	{		
+		return width * height;
+	}
+
+	double Perimeter() const
+	{		
+		return 2 * (width + height);
+	}
+
+	void Draw() const
+	{
+		cout << "Square , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	}
+};
+
 int main()
 {
 	int x = 2;
