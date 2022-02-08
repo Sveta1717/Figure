@@ -311,20 +311,20 @@ public:
 		this->y3 = y3;
 	}	
 
-	double Area() const
+	double AreaQuadrilateral() const
 	{
 		double S = 0.5 * (x - x1) * (y - y1) + (x1 - x2) * (y1 - y2) + (x2 - x3) * (y2 - y3) + (x3 - x) * (y3 - y);
 		return S;
 	}
 
-	double Perimeter() const
+	double PerimeterQuadrilateral() const
 	{		
 		return PerimeterPoligon1();
 	}
 
 	void Draw() const
 	{
-		cout << "Quadrilateral, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+		cout << "Quadrilateral, area = " << AreaQuadrilateral() << ", perimeter = " << PerimeterQuadrilateral() << "\n";
 	}
 };
 
@@ -503,7 +503,79 @@ public:
 	}
 };
 
-class Rectangle1
+class Parallelogram : public Quadrilateral 
+public:
+
+	Parallelogram()
+	{
+
+	}
+	
+	double Area() const
+	{		
+		return QuadrilateralArea();
+	}
+
+	double Perimeter() const
+	{		
+		return PerimeterQuadrilateral();
+	}
+
+	void Draw() const
+	{
+		cout << "Parallelogram, area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	}
+};
+
+class Trapezoid : public Quadrilateral 
+public:
+
+	Trapezoid ()
+	{
+
+	}
+	
+	double Area() const
+	{		
+		return QuadrilateralArea();
+	}
+
+	double Perimeter() const
+	{		
+		return PerimeterQuadrilateral();
+	}
+
+	void Draw() const
+	{
+		cout << "Trapezoid , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	}
+};
+
+class Deltoid : public Quadrilateral 
+public:
+
+	Deltoid ()
+	{
+
+	}
+	
+	double Area() const
+	{		
+		return QuadrilateralArea();
+	}
+
+	double Perimeter() const
+	{		
+		return PerimeterQuadrilateral();
+	}
+
+	void Draw() const
+	{
+		cout << "Deltoid , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	}
+};
+
+class Rectangle1: public Parallelogram
 {
 protected:
 	unsigned short width;
@@ -538,10 +610,72 @@ public:
 	{
 		height_ = height;
 	}
+	
+	double Area() const
+	{		
+		return width * height;
+	}
+
+	double Perimeter() const
+	{		
+		return 2 * (width + height);
+	}
 
 	void Draw() const
 	{
-		cout << "RECTANGLE!\n";
+		cout << "Rectangle , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
+	}
+};
+
+class Rhombus: public Parallelogram
+{
+protected:
+	unsigned short width;
+	unsigned short height;
+
+public:
+
+
+	Rhombus()
+	{
+
+	}
+	Rhombus(unsigned short width, unsigned short height)
+	{
+
+	}
+
+	unsigned short GetWidth() const
+	{
+		return width;
+	}
+	unsigned short GetHeight() const
+	{
+		return height;
+	}
+
+	void SetWidth(unsigned short width_)
+	{
+		width_ = width;
+	}
+	void SetHeight(unsigned short height_)
+	{
+		height_ = height;
+	}
+	
+	double Area() const
+	{		
+		return width * height;
+	}
+
+	double Perimeter() const
+	{		
+		return 2 * (width + height);
+	}
+
+	void Draw() const
+	{
+		cout << "Rhombus , area = " << Area() << ", perimeter = " << Perimeter() << "\n";
 	}
 };
 
